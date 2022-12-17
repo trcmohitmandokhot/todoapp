@@ -1,18 +1,23 @@
 import sys
 
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import Qt
+# Original Imports
+# from PyQt5 import QtCore, QtGui, QtWidgets
+# from PyQt5.QtCore import Qt
+
+# Modified Imports
+from PyQt5.QtWidgets import QApplication, QMainWindow
+
 
 from TodoMainWindow import Ui_todoMainWindow
 
-class MainWindow(QtWidgets.QMainWindow, Ui_todoMainWindow):
+class MainWindow(QMainWindow, Ui_todoMainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
 
 
 if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
+    app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
     app.exec_()
