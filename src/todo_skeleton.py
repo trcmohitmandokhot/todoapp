@@ -10,6 +10,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 
 from TodoMainWindow import Ui_todoMainWindow
 
+# Multiple Inheritance(Why?) - QtDesigner generated .ui uses MainWindow functions, that need referenced. 
 class MainWindow(QMainWindow, Ui_todoMainWindow):
     def __init__(self):
         super().__init__()
