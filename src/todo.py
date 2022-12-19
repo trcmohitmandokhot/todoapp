@@ -6,9 +6,13 @@ from typing import List,Tuple, Optional
 # Modified Imports
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtCore import QAbstractListModel, Qt, QModelIndex
+from PyQt5.QtGui import QColor
 
 # Import UI
 from TodoMainWindow import Ui_todoMainWindow
+
+COLOR_GREEN = QColor('green') 
+COLOR_RED = QColor('red')
 
 # This is the Model. Can this be imported from a standalone file. 
 class TodoModel(QAbstractListModel):
@@ -22,6 +26,16 @@ class TodoModel(QAbstractListModel):
         if role == Qt.DisplayRole:
             status, text = self.todos[index.row()]
             return text
+
+        # Decorate color of text based on status.  
+        if role == Qt.DecorationRole: 
+            status, text = self.todos[index.row()]
+            if status:
+                return COLOR_GREEN
+            else:
+                return COLOR_RED
+
+
 
     def rowCount(self,index: QModelIndex) -> int:
         # Get number of rows in current data.  
