@@ -12,7 +12,7 @@ from ui.TodoMainWindow import Ui_todoMainWindow
 # Import Model from submodule
 from models.todo import TodoModel
 
-DATA_DIR = "/home/devel/code/qtgui/todoapp/todo/data"
+DATA_DIR = "./data"
 
 # MainWindow has all of the core stiching logic between model and view. 
 class MainWindow(QMainWindow, Ui_todoMainWindow):
