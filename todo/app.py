@@ -88,6 +88,7 @@ class MainWindow(QMainWindow, Ui_todoMainWindow):
             self.save()
 
     def load(self):
+        " Load todo list from database"
         try:
             with open(os.path.join(DATA_DIR,"user1.json"),"r") as f:
                 self.model.todos = json.load(f)
@@ -100,6 +101,7 @@ class MainWindow(QMainWindow, Ui_todoMainWindow):
                 print(e)
 
     def save(self):
+        " Save modified todo list to database"
         try:
             with open(os.path.join(DATA_DIR,"user1.json"),"w") as f:
                 data = json.dump(self.model.todos,f)
