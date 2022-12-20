@@ -7,7 +7,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 # Import UI
-from TodoMainWindow import Ui_todoMainWindow
+from ui.TodoMainWindow import Ui_todoMainWindow
 
 # Import Model from submodule
 from models.todo import TodoModel
