@@ -2,14 +2,17 @@
 A simple todo app in PyQt5
 
 ## Features
+- Add todo items to list.   
+- Mark items complete.  
+- Delete items.  
 
 ## Getting Started / Installation
+More documentation needed here.  
 
 ## Tutorial / How-To
-
-## Documentation
+Refer to the guide [here](docs/howtouse.md)  
 
 ## Contributing
-
-## License
+Open for suggestions.  
+## License 
 GNU General Public License Version #3. Linked [here](LICENSE)
