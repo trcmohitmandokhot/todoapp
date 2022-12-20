@@ -1,5 +1,7 @@
 # Todo App
 
+import os
+import json
 import sys
 from typing import List,Tuple, Optional
 
@@ -13,6 +15,7 @@ from TodoMainWindow import Ui_todoMainWindow
 
 COLOR_GREEN = QColor('green') 
 COLOR_RED = QColor('red')
+DATA_DIR = "/home/devel/code/qtgui/todoapp/src/data"
 
 # This is the Model. Can this be imported from a standalone file. 
 class TodoModel(QAbstractListModel):
@@ -35,8 +38,6 @@ class TodoModel(QAbstractListModel):
             else:
                 return COLOR_RED
 
-
-
     def rowCount(self,index: QModelIndex) -> int:
         # Get number of rows in current data.  
         return len(self.todos)
@@ -48,8 +49,9 @@ class MainWindow(QMainWindow, Ui_todoMainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.setupUi(self)
-        self.model = TodoModel(todos = [(False,"Minstrone Soup"),(False,"Chicken Parmesan")])
-        # self.model = TodoModel()
+        # self.model = TodoModel(todos = [(False,"Minstrone Soup"),(False,"Chicken Parmesan")])
+        self.model = TodoModel()
+        self.load()
         self.todoView.setModel(self.model)
         # Connect add button signal to add_item action. 
         self.addButton.clicked.connect(self.add_item)
@@ -70,10 +72,7 @@ class MainWindow(QMainWindow, Ui_todoMainWindow):
             self.model.layoutChanged.emit()
             # Clear text entered in box
             self.todoEdit.clear()
-
-
-            # Debug print. 
-            print(self.model.todos[-1])
+            self.save()
 
     def delete_item(self) -> None:
         """
@@ -91,7 +90,7 @@ class MainWindow(QMainWindow, Ui_todoMainWindow):
             # Clear selection because index selected could be out of bounds...
             # and a new selection from user is encouraged.  
             self.todoView.clearSelection()
-
+            self.save()
 
     def complete_item(self) -> None: 
         """
@@ -112,10 +111,26 @@ class MainWindow(QMainWindow, Ui_todoMainWindow):
             self.model.layoutChanged.emit()
             # Clear selection 
             self.todoView.clearSelection()
+            self.save()
 
-            # Debug print. 
-            print(self.model.todos[user_sel_idx])
+    def load(self):
+        try:
+            with open(os.path.join(DATA_DIR,"user1.json"),"r") as f:
+                self.model.todos = json.load(f)
+        except FileNotFoundError as e:
+            print(e)
+        except json.JSONDecodeError as e:
+            if os.stat(f).st_size == 0: 
+                print("Empty database")
+            else:
+                print(e)
 
+    def save(self):
+        try:
+            with open(os.path.join(DATA_DIR,"user1.json"),"w") as f:
+                data = json.dump(self.model.todos,f)
+        except FileNotFoundError as e:
+            print(e)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
