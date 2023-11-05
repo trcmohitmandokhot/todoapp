@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # App specific data
-todo/data/*
+todo/data/*.json
