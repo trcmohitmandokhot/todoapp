@@ -6,7 +6,8 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
+
 
 class Ui_todoMainWindow(object):
     def setupUi(self, todoMainWindow):
@@ -40,4 +41,3 @@ class Ui_todoMainWindow(object):
         self.deleteButton.setText(_translate("todoMainWindow", "Delete"))
         self.completeButton.setText(_translate("todoMainWindow", "Complete"))
         self.addButton.setText(_translate("todoMainWindow", "Add Todo"))
-
