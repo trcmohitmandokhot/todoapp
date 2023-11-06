@@ -8,6 +8,9 @@
 
 from PyQt5 import QtCore, QtWidgets
 
+# Import configuration from submodule
+from config import vars as vars
+
 
 class Ui_todoMainWindow(object):
     def setupUi(self, todoMainWindow):
@@ -35,9 +38,14 @@ class Ui_todoMainWindow(object):
         self.retranslateUi(todoMainWindow)
         QtCore.QMetaObject.connectSlotsByName(todoMainWindow)
 
+        # print(dir())
+        # print(globals()["__name__"])
+        # print(locals())
+
     def retranslateUi(self, todoMainWindow):
         _translate = QtCore.QCoreApplication.translate
-        todoMainWindow.setWindowTitle(_translate("todoMainWindow", "MainWindow"))
+        titleStr = "TODO" + " Version " + str(vars.__VERSION__)
+        todoMainWindow.setWindowTitle(_translate("todoMainWindow", titleStr))
         self.deleteButton.setText(_translate("todoMainWindow", "Delete"))
         self.completeButton.setText(_translate("todoMainWindow", "Complete"))
-        self.addButton.setText(_translate("todoMainWindow", "Add Todo"))
+        self.addButton.setText(_translate("todoMainWindow", "Add Item"))

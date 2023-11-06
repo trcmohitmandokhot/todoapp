@@ -1,7 +1,5 @@
 # Todo App
 
-__version__ = 0.2
-__author__ = "Mohit Mandokhot"
 
 import os
 import json
